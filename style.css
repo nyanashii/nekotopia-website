@@ -1,0 +1,243 @@
+/* Base styles */
+:root {
+  /* Modern colour palette */
+  --color-primary: #1b253b; /* dark navy for headers and footer */
+  --color-secondary: #f8f9fc; /* very light grey for content areas */
+  --color-accent: #00a8e8; /* bright cyan accent */
+  --color-highlight: #005385; /* darker shade used for hover states */
+  --color-text: #1e293b; /* dark grey for copy */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+}
+
+/* Reusable container */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header & navigation */
+.site-header {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.nav-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--color-accent);
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  height: 50vh;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(27,37,59,0.6);
+  color: #fff;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-overlay h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-overlay p {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+/* Content sections */
+.content-section {
+  padding: 3rem 0;
+  background-color: #fff;
+}
+
+.content-section.alt-section {
+  background-color: #eef5fb;
+}
+
+.content-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.content-section p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.content-section ul {
+  list-style: disc inside;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Images in sections */
+.map-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.overseen-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.overseen-image {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.overseen-wrapper a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.overseen-wrapper a:hover {
+  color: var(--color-accent);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+/* Page hero for internal pages */
+.page-hero {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-hero p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #f0f4f8;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .nav-menu {
+    justify-content: flex-end;
+  }
+  .site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/*
+ * Custom layouts for the Charakter‑Seite. We use a responsive grid
+ * so that character cards wrap nicely on smaller screens. Each card
+ * has a light background, rounded corners and a subtle shadow to
+ * stand out from the page background. Feel free to adjust the number
+ * of columns by changing the minmax value below.
+ */
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.character-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.character-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.character-card p {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* Characters images inside cards */
+.character-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  object-fit: cover;
+}
