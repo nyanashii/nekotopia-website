@@ -1,13 +1,13 @@
 
 :root{
-  --bg:#0b0b0b;
-  --surface:#121212;
-  --card:#161616;
-  --text:#e9d8a6;   /* soft gold */
-  --muted:#bfa76a;
-  --accent:#d4af37; /* classic gold */
-  --link:#ffd66e;
-  --border:#262626;
+  --bg:#000000;
+  --surface:#0a0a0a;
+  --card:#0f0f0f;
+  --text:#e8c766;   /* primary gold for body text */
+  --muted:#caa84d;  /* muted gold */
+  --accent:#ffd24d; /* button/cta gold */
+  --link:#ffdf6e;
+  --border:#1a1a1a;
 }
 
 *{box-sizing:border-box}
@@ -20,25 +20,25 @@ body{
 }
 
 a{color:var(--link); text-decoration:none}
-a:hover{opacity:.9}
+a:hover{opacity:1; color:#ffe27d}
 
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
 .site-header{
   position:sticky; top:0; z-index:50;
-  background:rgba(0,0,0,.85);
+  background:#000;
   backdrop-filter: blur(6px);
   border-bottom:1px solid var(--border);
 }
 .site-header .container{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-weight:700; letter-spacing:.4px; color:var(--text)}
+.brand{font-weight:700; letter-spacing:.4px; color:#ffec9a}
 
 .nav-menu{display:flex; gap:18px}
 .nav-menu a{
   padding:10px 12px; border-radius:999px; font-weight:600;
   color:var(--text);
 }
-.nav-menu a:hover{background:var(--card)}
+.nav-menu a:hover{opacity:1; color:#ffe27d}
 
 .hero{
   position:relative; display:flex; align-items:center; justify-content:center;
@@ -50,7 +50,7 @@ a:hover{opacity:.9}
   background-size: cover;
   border-bottom:1px solid var(--border);
 }
-.hero h1{font-size:clamp(2.4rem, 6vw, 4rem); margin:0 0 .5rem 0; color:#fff}
+.hero h1{font-size:clamp(2.6rem, 6vw, 4.2rem); margin:0 0 .5rem 0; color:#ffec9a}
 .hero p{max-width:680px; margin:0 auto 1.2rem; color:var(--muted)}
 .cta{
   display:inline-block; padding:10px 18px; border-radius:999px;
@@ -58,16 +58,14 @@ a:hover{opacity:.9}
   font-weight:700;
 }
 .cta.ghost{background:transparent; color:var(--accent)}
-.cta:hover{transform:translateY(-1px)}
+.cta:hover{opacity:1; color:#ffe27d}
 
 .section{padding:64px 0; border-top:1px solid var(--border)}
 .section.alt{background:var(--surface)}
-.section h2{font-size:clamp(1.6rem, 3vw, 2rem); color:#fff; margin:0 0 12px}
+.section h2{font-size:clamp(1.6rem, 3vw, 2rem); color:#ffec9a; margin:0 0 12px}
 .card-grid{display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:18px}
-.card{
-  background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px;
-}
-.card h3{margin:.3rem 0 .25rem 0; color:#fff}
+.card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; box-shadow: 0 0 0 1px rgba(255,210,77,.06) inset}
+.card h3{margin:.3rem 0 .25rem 0; color:#ffec9a}
 .card p{margin:0; color:var(--muted)}
 
 .page-hero{padding:72px 0; background:linear-gradient(180deg,#0b0b0b,#121212); text-align:center; border-bottom:1px solid var(--border)}
