@@ -88,6 +88,7 @@ img.responsive{max-width:100%; height:auto; display:block; border-radius:12px}
 }
 
 
+/* == Custom Grid: 3 oben, 2 unten zentriert == */
 .card-section {
   max-width: 1200px;
   margin-inline: auto;
