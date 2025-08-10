@@ -157,3 +157,20 @@ a:hover {
   color: var(--link);
   margin: 0 0.2rem;
 }
+
+
+/* Logos im Hero-Bereich */
+.hero .side-logo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 160px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.hero .side-logo.left {
+  left: 5%;
+}
+.hero .side-logo.right {
+  right: 5%;
+}
