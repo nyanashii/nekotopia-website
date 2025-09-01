@@ -22,7 +22,7 @@
 </div>
 </header>
 <div class="page-hero"><div class="container"><h1>Geschichte</h1></div></div>
-<main class="page"><div class="container"><p>(Hier kommt die Geschichte rein – ich kann sie gern aus deiner alten Seite übernehmen.)</p></div></main>
+<main class="page"><div class="container"><div aria-label="Geschichte als Buch" class="book" role="region"><nav aria-label="Inhaltsverzeichnis" class="toc"><h2>Inhaltsverzeichnis</h2><ol class="toc-list"></ol></nav><div class="book-controls book-controls--top"><button aria-label="Vorheriges Kapitel" class="book-prev" type="button">‹</button><div class="book-progress"><span class="book-progress-text"></span></div><button aria-label="Nächstes Kapitel" class="book-next" type="button">›</button></div><div class="book-pages" tabindex="0"></div><div class="book-controls book-controls--bottom"><button aria-label="Vorheriges Kapitel" class="book-prev" type="button">‹</button><div class="book-progress"><span class="book-progress-text"></span></div><button aria-label="Nächstes Kapitel" class="book-next" type="button">›</button></div></div></div></main>
 <footer class="site-footer">
 <div class="container">
     © 2025 NekoTopia  • 
@@ -31,5 +31,88 @@
     <a href="cookie-einstellungen.html">Cookie‑Einstellungen</a>
 </div>
 </footer>
-</body>
+<script>
+(function(){
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+  const pages = $$(".book-page");
+  if (!pages.length) return;
+
+  const tocList = document.querySelector(".toc-list");
+  if (tocList){
+    pages.forEach((p, i)=>{
+      const title = p.querySelector("h2")?.textContent || `Kapitel ${i+1}`;
+      const id = p.id || `kapitel-${i+1}`;
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = `#${id}`;
+      a.textContent = title;
+      a.addEventListener("click", (e)=>{
+        e.preventDefault();
+        show(i);
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+  }
+  function updateTOCActive(i){
+    if (!tocList) return;
+    tocList.querySelectorAll("a").forEach((a, idx)=>{
+      a.classList.toggle("active", idx===i);
+      a.setAttribute("aria-current", idx===i ? "true" : "false");
+    });
+  }
+  const prev = $(".book-prev");
+  const next = $(".book-next");
+  const progress = $(".book-progress-text");
+  const wrap = $(".book-pages");
+  let index = 0;
+
+  function show(i, opts={}){
+    if (i < 0) i = 0;
+    if (i >= pages.length) i = pages.length - 1;
+    pages.forEach(p => p.classList.remove("active"));
+    pages[i].classList.add("active");
+    index = i;
+    progress.textContent = `${pages[i].querySelector("h2")?.textContent || ("Kapitel " + (i+1))} (${i+1}/${pages.length})`;
+    updateTOCActive(i);
+    const id = pages[i].id || `kapitel-${i+1}`;
+    if (!opts.silent) history.replaceState(null, "", `#${id}`);
+    // focus management for a11y
+    wrap.setAttribute("aria-live","polite");
+  }
+
+  function fromHash(){
+    const hash = location.hash.replace("#","");
+    if (!hash) return 0;
+    const i = pages.findIndex(p => p.id === hash);
+    return i >= 0 ? i : 0;
+  }
+
+  prev.addEventListener("click", () => show(index-1));
+  next.addEventListener("click", () => show(index+1));
+  document.addEventListener("keydown", (e)=>{
+    if (e.key === "ArrowLeft") show(index-1);
+    if (e.key === "ArrowRight") show(index+1);
+  });
+
+  // touch swipe
+  let touchX = null;
+  wrap.addEventListener("touchstart", (e)=>{ touchX = e.changedTouches[0].clientX; }, {passive:true});
+  wrap.addEventListener("touchend", (e)=>{
+    if (touchX == null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40){
+      if (dx < 0) show(index+1);
+      else show(index-1);
+    }
+    touchX = null;
+  }, {passive:true});
+
+  window.addEventListener("hashchange", ()=> show(fromHash(), {silent:true}));
+
+  // init
+  show(fromHash(), {silent:true});
+  wrap.focus({preventScroll:true});
+})();</script></body>
 </html>
