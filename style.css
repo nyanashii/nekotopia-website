@@ -201,15 +201,18 @@ a:hover {
 
 /* ===== Flipbook Frame with overlay arrows ===== */
 .book-header { display:flex; justify-content:center; align-items:center; margin: .5rem 0 1rem; font-weight:700; color: var(--muted); }
-.book-frame { position: relative; border: 3px solid var(--border); border-radius: 14px; background: var(--card); box-shadow: 0 8px 24px rgba(0,0,0,.25) inset; }
+.book-frame { position: relative; border: 3px solid var(--border); border-radius: 14px; background: var(--card); box-shadow: 0 8px 24px rgba(0,0,0,.25) inset;   overflow: visible;
+}
 .book-pages { min-height: 55vh; padding: clamp(1.2rem, 2.4vw, 2rem); }
 .book-page h2 { text-align:center; margin-top: .2rem; margin-bottom: 1rem; color: var(--muted); }
-.book-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; font-size: 1.8rem; line-height: 1; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.book-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; font-size: 1.8rem; line-height: 1; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer;   z-index: 5;
+}
 .book-arrow:hover { border-color: var(--muted); }
 .book-arrow-left { left: -22px; }   /* half outside frame */
 .book-arrow-right { right: -22px; }
 @media (max-width: 720px) {
-  .book-arrow { width: 38px; height: 38px; font-size: 1.6rem; }
+  .book-arrow { width: 38px; height: 38px; font-size: 1.6rem;   z-index: 5;
+}
   .book-arrow-left { left: -19px; }
   .book-arrow-right { right: -19px; }
 }
